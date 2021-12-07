@@ -4,7 +4,7 @@ name: Run Tests
     branches:
       - master
   schedule:
-    -cron: "0 13 * * 1"
+    -cron: "*/5 * * * *"
 
 jobs:
   cypress-run:
