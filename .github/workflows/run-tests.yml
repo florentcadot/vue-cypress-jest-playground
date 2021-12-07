@@ -1,14 +1,14 @@
-name: Run Unit Tests
-"on": push
+name: Run Unit & E2E Tests
+on: [push]
 jobs:
-  unit_test-lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: |
-          npm ci
-          npm run build
-          npm run test:unit
+#  unit_test-lint:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - run: |
+#          npm ci
+#          npm run build
+#          npm run test:unit
   cypress-run:
     runs-on: ubuntu-latest
     steps:
@@ -18,3 +18,10 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v2
+        with:
+          start: npm run serve
+          wait-on: http://localhost:8080/
+          config_file: cypress.json
+          spec: "tests/e2e/**/*"
+          env:
+            CYPRESS_baseUrl: http://localhost:8080/
