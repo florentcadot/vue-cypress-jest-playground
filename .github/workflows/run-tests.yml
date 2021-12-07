@@ -1,4 +1,4 @@
-name: Run Unit & E2E Tests
+name: Run Unit Tests
 "on": push
 jobs:
   cypress-run:
